@@ -1,0 +1,125 @@
+swagger: "2.0"
+info:
+  version: "1"
+  title: "kollex - Exemplary Products API"
+tags:
+  - name: "Products"
+    description: "Product information"
+schemes:
+  - "https"
+paths:
+  /products:
+    get:
+      summary: "An exemplary, simplistic resource for fetching products"
+      tags:
+        - "Products"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ProductCollection"
+
+definitions:
+  ProductCollection:
+    type: "object"
+    properties:
+      data:
+        type: "array"
+        items:
+          $ref: '#/definitions/Product'
+
+  Product:
+    type: "object"
+    required:
+      - "id"
+      - "manufacturer"
+      - "name"
+      - "packaging"
+      - "baseProductPackaging"
+      - "baseProductUnit"
+      - "baseProductAmount"
+      - "baseProductQuantity"
+    externalDocs:
+      url: "http://t3.apptrix.com/syteline/Language/en-US/fields/i/iso_um_ums.htm"
+    properties:
+      id:
+        type: "string"
+        description: "The wholesaler's unique product identifier"
+        example: "ABC12345678"
+      gtin:
+        type: "string"
+        description: |
+          The "Global Trade Identification Number" (GTIN/EAN), a public identifier for trade items, developed by GS1
+        example: "05449000061704"
+      manufacturer:
+        type: "string"
+        description: "Manufacturer name"
+        example: "Beverages Ltd."
+      name:
+        type: "string"
+        description: "Product name"
+        example: "Beverage 23, 6x 0.75 L"
+      description:
+        type: "string"
+        description: "Detailed product description"
+        example: "Lorem ipsum usu amet dicat nullam ea. Nec detracto lucilius democritum in, ne usu delenit offendit deterruisset. Recusabo iracundia molestiae ea pro, suas dicta nemore an cum, erat dolorum nonummy mel ea."
+      packaging:
+        type: "string"
+        description: |
+          Packaging of the product (standardized units, see external docs), for example a case (CA)
+          Avaiable options:
+          - CA = case
+          - BX = box
+          - BO = bottle
+        example: "CA"
+        enum:
+          - "CA"
+          - "BX"
+          - "BO"
+      baseProductPackaging:
+        type: "string"
+        description: |
+          Packaging of the base product (standardized units, see external docs), for example a bottle (BO)
+          Avaiable options:
+          - BO = bottle
+          - CN = can
+        example: "BO"
+        enum:
+          - "BO"
+          - "CN"
+      baseProductUnit:
+        type: "string"
+        description: |
+          Unit of measurement of the base product (standardized units, see external docs), for example liters (LT)
+          Avaiable options:
+          - LT = liters
+          - GR = grams
+        example: "LT"
+        enum:
+          - "LT"
+          - "GR"
+      baseProductAmount:
+        type: "number"
+        format: "float"
+        description: "Amount of contents in the given unit of measurement of the base product, for example 0.75 liters"
+        example: 0.75
+      baseProductQuantity:
+        type: "integer"
+        description: "Number of base products within the package, for example 6 bottles"
+        example: 6
+      price:
+        type: "integer"
+        example: "699"
+        description: "The price (net) in euro cents"
+      logoUri:
+        type: "string"
+        example: "https://dummyimage.com/200x200/eeeeee/2fd6ac.png&text=Logo"
+        description: "A dummy logo image of the manufacturer"
+      listingPhotoUri:
+        type: "string"
+        example: "https://dummyimage.com/300x200/eeeeee/2fd6ac.png&text=+Dummy+"
+        description: "A dummy image for the product listing page"
+      detailsPhotoUri:
+        type: "string"
+        example: "https://dummyimage.com/600x300/eeeeee/2fd6ac.png&text=+Dummy+"
+        description: "A dummy image for the product details page"
