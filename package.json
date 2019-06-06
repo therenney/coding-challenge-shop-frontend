@@ -3,13 +3,14 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "serve": "vue-cli-service serve | npm run serve-api",
+        "serve": "vue-cli-service serve",
         "serve-api": "json-server ./api/products.json",
         "build": "vue-cli-service build",
         "lint": "vue-cli-service lint",
         "test:unit": "vue-cli-service test:unit"
     },
     "dependencies": {
+        "axios": "^0.19.0",
         "core-js": "^2.6.5",
         "uikit": "^3.1.5",
         "vue": "^2.6.10",

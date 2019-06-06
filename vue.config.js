@@ -38,8 +38,9 @@ module.exports = {
     devServer: {
         disableHostCheck: true,
         host: '0.0.0.0',
-        // public: 'kollex.local',
         port: 8080,
+        // proxy all unknown requests to the api
+        proxy: 'http://localhost:3000',
     },
     // disable prefetching of js in index.html
     // chainWebpack: config => {
