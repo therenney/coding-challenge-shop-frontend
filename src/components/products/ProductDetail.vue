@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="product">
+        <div v-if="product && product.name" class="product-detail">
             <h2>
                 {{ product.name }}<br /><span class="uk-text-lead">{{ product.price | currency }}</span>
             </h2>
@@ -48,7 +48,7 @@
                 </dl>
             </div>
         </div>
-        <div v-else="">
+        <div v-else="" class="product-error">
             <h2>
                 Sorry, this product is currently not available!
             </h2>
@@ -65,6 +65,7 @@ export default {
     props: {
         product: {
             type: Object,
+            required: true,
         },
     },
 

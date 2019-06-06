@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductDetail Given there is product data When the ProductDetail component is rendered should render a view with the product details 1`] = `
+<div>
+  <div class="product-detail">
+    <h2>
+      Beverage 23, 6x 0.75 L<br><span class="uk-text-lead">€459.00</span></h2>
+    <div uk-grid="" class="uk-grid-small uk-margin-bottom">
+      <div class="uk-width-1-1 uk-width-1-2@s uk-width-1-3@m"><img data-src="https://dummyimage.com/600x400/eeeeee/2fd6ac.png&amp;text=Beverage+23,+6x0.75" width="100%" height="150" alt="" uk-img="" class="product-image"></div>
+      <div class="uk-width-1-1 uk-width-1-2@s uk-width-2-3@m">
+        <p>Lorem ipsum usu amet dicat nullam ea. Nec detracto lucilius democritum in, ne usu delenit offendit deterruisset. Recusabo iracundia molestiae ea pro, suas dicta nemore an cum, erat dolorum nonummy mel ea. Iisque labores liberavisse in mei, dico laoreet elaboraret nam et, iudico verterem platonem est an. Te usu paulo vidisse epicuri, facilis mentitum liberavisse vel ut, movet iriure invidunt ut quo. Ad melius mnesarchum scribentur eum, mel at mundi impetus utroque.</p>
+      </div>
+    </div>
+    <div class="uk-column-1-3@m">
+      <dl class="uk-description-list">
+        <dt>Manufacturer</dt>
+        <dd>
+          Beverages Ltd.
+        </dd>
+        <dt>Packaging</dt>
+        <dd>
+          CA
+        </dd>
+        <dt>Base Product Packaging</dt>
+        <dd>
+          BO
+        </dd>
+        <dt>Base Product Unit</dt>
+        <dd>
+          LT
+        </dd>
+        <dt>Base Product Amount</dt>
+        <dd>
+          0.75
+        </dd>
+        <dt>Base Product Quantity</dt>
+        <dd>
+          6
+        </dd>
+      </dl>
+    </div>
+  </div>
+</div>
+`;
