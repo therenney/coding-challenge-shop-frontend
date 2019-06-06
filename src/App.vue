@@ -4,7 +4,7 @@
         <div>
             <main>
                 <transition name="fade" mode="out-in">
-                    <Index />
+                    <router-view :key="$route.fullPath" />
                 </transition>
             </main>
         </div>
@@ -16,15 +16,9 @@
 import UIkit from 'uikit';
 import UIkitIcons from '@src/styles/uikit/uikit-icons-theme';
 
-import Index from '@views/index';
-
 UIkit.use(UIkitIcons);
 
-export default {
-    components: {
-        Index,
-    },
-};
+export default {};
 </script>
 
 <style lang="less">

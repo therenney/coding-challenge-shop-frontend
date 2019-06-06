@@ -3,7 +3,7 @@
         <nav class="uk-navbar" data-uk-navbar="">
             <div class="uk-navbar-left">
                 <div class="logo">
-                    <a class="uk-navbar-item uk-logo" href="#"
+                    <a class="uk-navbar-item uk-logo" href="/"
                         ><img class="uk-preserve" src="@assets/logo.svg" width="122" height="32" uk-svg
                     /></a>
                 </div>

@@ -1,5 +1,5 @@
 <template>
-    <footer class="uk-section-muted uk-box-shadow-small">
+    <footer class="uk-section-primary uk-box-shadow-small">
         <div class="uk-container uk-section">
             <div class="uk-child-width-1-3@l" uk-height-match="target: > div > .uk-card" uk-grid>
                 <div>

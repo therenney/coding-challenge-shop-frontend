@@ -2,17 +2,25 @@
 export default [
     {
         path: '/',
-        name: 'index',
-        component: require('@views/index').default,
+        alias: '/products',
+        name: 'products',
+        component: require('@views/products').default,
+        // component: () => import('@views/productDetail'),
+        // props: route => ({
+        //     'sort.sortBy': route.query.sortBy,
+        //     'sort.sortDirection': route.query.sortDirection,
+        //     'sort.filter': route.query.filter,
+        // }),
     },
-    // {
-    //     path: '/detail',
-    //     name: 'detail',
-    //     // route level code-splitting
-    //     // this generates a separate chunk (detail.[hash].js) for this route
-    //     // which is lazy-loaded when the route is visited.
-    //     component: () => lazyLoadView(import(/* webpackChunkName: "detail" */ '@views/detail.vue')),
-    // },
+    {
+        path: '/products/:id',
+        name: 'product',
+        // route level code-splitting
+        // this generates a separate chunk (detail.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        // component: () => lazyLoadView(import(/* webpackChunkName: "product" */ '@views/productDetail')),
+        component: () => import('@views/productDetail'),
+    },
     {
         path: '/404',
         name: '404',
@@ -21,9 +29,6 @@ export default [
         // Allows props to be passed to the 404 page through route
         // params, such as `resource` to define what wasn't found.
         props: true,
-        meta: {
-            public: true,
-        },
     },
     // Redirect any unmatched routes to the 404 page. This may
     // require some server configuration to work in production:

@@ -15,9 +15,6 @@ export default {
     components: {
         'product-list': ProductList,
     },
-    data() {
-        return {};
-    },
 
     /**
      * Get namespaced store for products
@@ -28,12 +25,12 @@ export default {
 
     /**
      * Created Hook - Invoke API products call through stores fetchProduct action
+     * TODO: discuss if it is worth getting the latest store or not,
+     * what if we deeplink into a details page, etc!?
      */
     created() {
         // PRODUCTS/fetchProducts
-        this.$store.dispatch(`PRODUCTS/fetchProducts`).then(ff => {
-            console.log(ff);
-        });
+        this.$store.dispatch(`PRODUCTS/fetchProducts`);
     },
 };
 </script>
