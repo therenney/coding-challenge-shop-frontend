@@ -1,42 +1,39 @@
 <template>
     <div class="uk-section">
         <div class="uk-container">
-            <table class="uk-table uk-table-middle uk-table-divider">
-                <thead>
-                    <tr>
-                        <th class="uk-width-small">Table Heading</th>
-                        <th>Table Heading</th>
-                        <th>Table Heading</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="index in 10" :key="index">
-                        <td>Table Data</td>
-                        <td>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua.
-                        </td>
-                        <td><button class="uk-button uk-button-default" type="button">Button</button></td>
-                    </tr>
-                </tbody>
-            </table>
+            <h2>Products</h2>
+            <product-list :products="products"></product-list>
         </div>
     </div>
 </template>
 
 <script>
-export default {
-    components: {},
+import { mapGetters } from 'vuex';
+import ProductList from '@components/products/ProductList.vue';
 
+export default {
+    components: {
+        'product-list': ProductList,
+    },
     data() {
         return {};
     },
 
+    /**
+     * Get namespaced store for products
+     */
+    computed: {
+        ...mapGetters('PRODUCTS', ['products']),
+    },
+
+    /**
+     * Created Hook - Invoke API products call through stores fetchProduct action
+     */
     created() {
-        // get streamlab profile
-        // this.$store.dispatch(`STREAMLABS/fetchProfile`).then(() => {
-        //     this.fetchAccount();
-        // });
+        // PRODUCTS/fetchProducts
+        this.$store.dispatch(`PRODUCTS/fetchProducts`).then(ff => {
+            console.log(ff);
+        });
     },
 };
 </script>

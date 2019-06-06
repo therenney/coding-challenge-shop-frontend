@@ -1,10 +1,9 @@
 import Vue from 'vue';
-import components from '@components/_components';
 import upperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
 
-// Globally register all core components for convenience, because they
-// will be used very frequently. Components are registered using the
+// Globally register core components for convenience, they will
+// be used very frequently. Components are registered using the
 // PascalCased version of their file name.
 // https://webpack.js.org/guides/dependency-management/#require-context
 
@@ -35,11 +34,3 @@ requireComponent.keys().forEach(fileName => {
     // Globally register the component
     Vue.component(componentName, componentConfig.default || componentConfig);
 });
-
-// TODO: Integrate with global registration
-// Register Components - non Global-Core Components
-(function registerComponents(Vue) {
-    for (let component in components) {
-        Vue.component(component, components[component]);
-    }
-})(Vue);
