@@ -8,6 +8,10 @@ The App consists of basically two pages and two components, ProductList and Prod
 
 All views are responsive using UIkits styles. I decided at some point to create a separate route and view for the detail page instead of only a modal that triggers on clicking the 'more' CTA on the product list page. That makes it easier also to directly share the URL and deeplink into a specific product.
 
+Sorting the ProductList is done within the component, this could also be done in the Store mutating the state based on the sort parameters, similar to the mthods used in the component. That only works for smaller datasets, ideally though the API should handle this when dealing with thousands of records.
+
+The Vuex Store is namespaced by choice, this ensure for easier maintainability in case other components, besides products, are to be added.
+
 ## Available Scripts
 
 To start developing run npm install in the projects root.
