@@ -6,9 +6,28 @@
         <table class="uk-table uk-table-small uk-table-responsive uk-table-striped">
             <thead>
                 <tr>
-                    <th class="uk-width-small">Name <span @click="sorter = 'name'"></span></th>
+                    <th class="sortable uk-width-small" @click="resortProducts('name')">
+                        Name
+                        <span v-show="sortBy == 'name' && sortDirection == 'ASC'" uk-icon="icon: chevron-down"></span>
+                        <span v-show="sortBy == 'name' && sortDirection == 'DESC'" uk-icon="icon: chevron-up"></span>
+                    </th>
                     <th>Details</th>
-                    <th>Price <span @click="sorter = 'price'"></span></th>
+                    <th class="sortable" @click="resortProducts('packaging')">
+                        Packaging
+                        <span
+                            v-show="sortBy == 'packaging' && sortDirection == 'ASC'"
+                            uk-icon="icon: chevron-down"
+                        ></span>
+                        <span
+                            v-show="sortBy == 'packaging' && sortDirection == 'DESC'"
+                            uk-icon="icon: chevron-up"
+                        ></span>
+                    </th>
+                    <th class="sortable" @click="resortProducts('price')">
+                        Price
+                        <span v-show="sortBy == 'price' && sortDirection == 'ASC'" uk-icon="icon: chevron-down"></span>
+                        <span v-show="sortBy == 'price' && sortDirection == 'DESC'" uk-icon="icon: chevron-up"></span>
+                    </th>
                     <th class="uk-width-small"></th>
                 </tr>
             </thead>
@@ -38,14 +57,11 @@
                                     <dd>
                                         {{ manufacturer }}
                                     </dd>
-                                    <dt>Packaging</dt>
-                                    <dd>
-                                        {{ packaging }}
-                                    </dd>
                                 </dl>
                             </div>
                         </div>
                     </td>
+                    <td>{{ packaging }}</td>
                     <td class="uk-text-bold">{{ price | currency }}</td>
                     <td>
                         <router-link class="uk-button uk-button-primary" :to="`products/${id}`">More</router-link>
@@ -73,17 +89,84 @@ export default {
         return {
             sortBy: 'name',
             sortDirection: 'ASC',
-            search: '',
+            sortedProducts: [],
         };
     },
 
-    computed: {
-        sortedProducts() {
-            return this.products;
-            // const list = Object.assign({}, this.products);
-            // return list.sort((a, b) => {
-            //     a[this.sortBy].toLowerCase() < b[this.sortBy].toLowerCase();
-            // });
+    watch: {
+        products: function(newProducts) {
+            this.sortedProducts = newProducts.slice(0);
+        },
+    },
+
+    methods: {
+        /**
+         * Sort by string.
+         *
+         * @param {string} type
+         */
+        sortProductsByString(type) {
+            this.sortedProducts.sort(
+                function(a, b) {
+                    if (this.sortDirection == 'ASC') {
+                        return a[type] == b[type] ? 0 : a[type] > b[type] ? 1 : -1;
+                    }
+
+                    if (this.sortDirection == 'DESC') {
+                        return a[type] == b[type] ? 0 : a[type] < b[type] ? 1 : -1;
+                    }
+                }.bind(this)
+            );
+        },
+
+        /**
+         * Sort by number.
+         *
+         * @param {string} type
+         */
+        sortProductsByNumber(type) {
+            this.sortedProducts.sort(
+                function(a, b) {
+                    if (this.sortDirection == 'ASC') {
+                        return parseInt(a[type]) < parseInt(b[type]) ? 1 : -1;
+                    }
+
+                    if (this.sortDirection == 'DESC') {
+                        return parseInt(a[type]) > parseInt(b[type]) ? 1 : -1;
+                    }
+                }.bind(this)
+            );
+        },
+
+        /**
+         * Define what we sort for.
+         *
+         * @param {string} order
+         */
+        resortProducts(order) {
+            // Checks for change, otherwise swap order.
+            if (order === this.sortBy) {
+                if (this.sortDirection == 'ASC') {
+                    this.sortDirection = 'DESC';
+                } else {
+                    this.sortDirection = 'ASC';
+                }
+            }
+
+            // If order is different set sortBy to whats selected and default direction to 'ASC'
+            if (order !== this.sortBy) {
+                this.sortDirection = 'ASC';
+                this.sortBy = order;
+            }
+
+            // Switch sortBy and run the method to sort that column
+            switch (this.sortBy) {
+                case 'price':
+                    this.sortProductsByNumber(this.sortBy);
+                    break;
+                default:
+                    this.sortProductsByString(this.sortBy);
+            }
         },
     },
 
@@ -109,4 +192,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="less" scoped>
+th.sortable {
+    cursor: pointer;
+}
+</style>

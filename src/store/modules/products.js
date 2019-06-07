@@ -1,10 +1,8 @@
 import axios from 'axios';
 
-const initialState = {
+const state = {
     products: [],
 };
-
-const state = JSON.parse(JSON.stringify(initialState));
 
 const getters = {
     products: state => state.products,
@@ -52,6 +50,7 @@ const actions = {
             response => {
                 // eslint-disable-next-line
                 console.info('Example call to get a single product:');
+                // eslint-disable-next-line
                 console.log('GET /product/:id endpoint success', response.data, commit);
                 // commit('SET_ACTIVE_PRODUCT', response.data);
             },

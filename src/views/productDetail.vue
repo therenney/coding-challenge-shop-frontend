@@ -1,11 +1,15 @@
 <template>
     <div class="uk-section">
         <div class="uk-container">
-            <router-link class="uk-link-muted" to="/products">Back</router-link>
+            <router-link class="uk-link-muted" to="/products"
+                ><span uk-icon="icon: chevron-left"></span>Back</router-link
+            >
             <hr />
             <product-detail :product="product"></product-detail>
             <hr />
-            <router-link class="uk-link-muted" to="/products">Back</router-link>
+            <router-link class="uk-link-muted" to="/products"
+                ><span uk-icon="icon: chevron-left"></span>Back</router-link
+            >
         </div>
     </div>
 </template>
