@@ -1,5 +1,5 @@
 <template>
-    <div v-if="products && products.length === 0">
+    <div v-if="!products || products.length === 0">
         <span class="uk-label uk-label-warning">No Data</span>
     </div>
     <div v-else>
