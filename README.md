@@ -4,13 +4,15 @@ After bootstrapping with [Vue-CLI](https://cli.vuejs.org) i removed unnecessary 
 
 As HTTP client used [Axios](https://github.com/axios/axios) instead of [superagent](https://github.com/visionmedia/superagent) or [Fetch](https://github.com/github/fetch), mainly in favor of better error handling, security and automatic JSON transformation. [UIkit](https://github.com/uikit/uikit) i choose as front-end CSS framework for it's simplistic but visual very appealing approach. Vuetify would have been another good option but for this task UIkit seemed to be the better option for me. I also added a dedicated kollex theme that enables us to fully customize UIkits components to a unique look and feel. I did not optimize for speed or a small footprint, by for example, removing unused styles from UIkit.
 
+To provide a near production scenario i integrated [json-server](https://github.com/typicode/json-server) to have a full fake REST API which uses the `product.json` file provided for the test. This way we can develop locally without having a fully implemented and working API service.
+
 The App consists of basically two pages and two components, ProductList and ProductDetail. I did not create more granular components for this small Demo. Some elements could have been created as separate functional and simple components that don't have a state (NavBar or Back button on Detail page).
+
+Sorting the ProductList is done within the component, this could also be done in the Store mutating the state based on the sort parameters, similar to the methods used in the component. That only works for smaller datasets. Ideally though the API should handle this when dealing with thousands of records. The json-server i use does provide also sort and filtering, i chose though to not leverage this and instead to the sorting 'manually'.
 
 All views are responsive using UIkits styles. I decided at some point to create a separate route and view for the detail page instead of only a modal that triggers on clicking the 'more' CTA on the product list page. That makes it easier also to directly share the URL and deeplink into a specific product.
 
-Sorting the ProductList is done within the component, this could also be done in the Store mutating the state based on the sort parameters, similar to the mthods used in the component. That only works for smaller datasets, ideally though the API should handle this when dealing with thousands of records.
-
-The Vuex Store is namespaced by choice, this ensure for easier maintainability in case other components, besides products, are to be added.
+The Vuex Store is namespaced by choice, this ensure for easier maintainability in case other components, other then products, are to be added.
 
 ## Available Scripts
 
@@ -32,9 +34,13 @@ Runs the json-server that provides a fully mocked version of the product API. Yo
 
 Launches the test runner and executes all unit tests under tests/unit.
 
+### `docker-compose up`
+
+The App can be also started using Docker via `docker-compose up` to provide a quick way of running the project.
+
 ## Tests
 
-I used Jest to do basic testing for the components. There are dedicated tests for the ProductList and ProductDetail page.
+I used Jest to do basic testing for the components. There are dedicated tests for the ProductList and ProductDetail page. Ideally i would test also the store and functionality related to changing items and updates in the DOM, due to time constraints i did not manage to do so.
 
 ## Commit Guidelines
 
