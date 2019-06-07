@@ -3,6 +3,7 @@ node_modules
 /dist
 
 /coverage
+/_snapshots__
 
 # local env files
 .env.local
