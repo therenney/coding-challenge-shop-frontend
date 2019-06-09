@@ -6,13 +6,13 @@
         <table class="uk-table uk-table-small uk-table-responsive uk-table-striped">
             <thead>
                 <tr>
-                    <th class="sortable uk-width-small" @click="resortProducts('name')">
+                    <th class="sortable uk-width-small" data-sortable="name" @click="resortProducts('name')">
                         Name
                         <span v-show="sortBy == 'name' && sortDirection == 'ASC'" uk-icon="icon: chevron-down"></span>
                         <span v-show="sortBy == 'name' && sortDirection == 'DESC'" uk-icon="icon: chevron-up"></span>
                     </th>
                     <th>Details</th>
-                    <th class="sortable" @click="resortProducts('packaging')">
+                    <th class="sortable" data-sortable="packaging" @click="resortProducts('packaging')">
                         Packaging
                         <span
                             v-show="sortBy == 'packaging' && sortDirection == 'ASC'"
@@ -23,7 +23,7 @@
                             uk-icon="icon: chevron-up"
                         ></span>
                     </th>
-                    <th class="sortable" @click="resortProducts('price')">
+                    <th class="sortable" data-sortable="price" @click="resortProducts('price')">
                         Price
                         <span v-show="sortBy == 'price' && sortDirection == 'ASC'" uk-icon="icon: chevron-down"></span>
                         <span v-show="sortBy == 'price' && sortDirection == 'DESC'" uk-icon="icon: chevron-up"></span>
@@ -94,8 +94,11 @@ export default {
     },
 
     watch: {
-        products: function(newProducts) {
-            this.sortedProducts = newProducts.slice(0);
+        products: {
+            immediate: true,
+            handler(newProducts) {
+                this.sortedProducts = newProducts.slice(0);
+            },
         },
     },
 
