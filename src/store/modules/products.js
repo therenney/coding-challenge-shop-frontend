@@ -5,7 +5,14 @@ const state = {
 };
 
 const getters = {
-    products: state => state.products,
+    products: state => {
+        return state.products.map(item => {
+            // Convert price (net) from euro cents
+            item.price = item.price / 100;
+            return item;
+        });
+    },
+
     productById: state => {
         // declare a method to pass params into this getter
         return id => {
