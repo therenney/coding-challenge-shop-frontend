@@ -35,6 +35,7 @@
                 <tr
                     v-for="{ id, name, description, manufacturer, listingPhotoUri, packaging, price } in sortedProducts"
                     :key="`product-${id}`"
+                    :data-productid="`${id}`"
                 >
                     <td class="uk-text-bold">{{ name }}</td>
                     <td>

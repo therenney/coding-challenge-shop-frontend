@@ -117,11 +117,6 @@ describe('ProductList', () => {
                 // this is a little verbose though
                 expect(wrapper.html()).toMatchSnapshot();
             });
-
-            it('should render prices with euro curreny', () => {
-                // Expect that the table has 2 rows
-                expect(wrapper.find('tbody > tr:first-child > td:nth-last-child(2)').text()).toBe("€459.00");
-            });
         });
 
         describe('When the table header for name is sortable', () => {
@@ -129,10 +124,10 @@ describe('ProductList', () => {
 
                 wrapper.find('table th.sortable:first-child').trigger('click');
 
-                // Expect that the table is sorted by product names and "Orange Soda, 6 x 1.5 L" is shown first
-                expect(wrapper.find('tbody > tr:first-child > td').text()).toBe("Orange Soda, 6 x 1.5 L");
-                expect(wrapper.find('tbody > tr:nth-child(2) > td').text()).toBe("Mango Soda, 6 x 1.5 L");
-                expect(wrapper.find('tbody > tr:nth-child(3) > td').text()).toBe("Beverage 23, 6x 0.5 L");
+                // Expect that the table is sorted by product names
+                expect(wrapper.find('tbody > tr:nth-child(1)').attributes('data-productid')).toBe("ABC1234541120");
+                expect(wrapper.find('tbody > tr:nth-child(2)').attributes('data-productid')).toBe("ABC1234541122");
+                expect(wrapper.find('tbody > tr:nth-child(3)').attributes('data-productid')).toBe("ABC1234567800");
             });
         });
 
@@ -141,10 +136,10 @@ describe('ProductList', () => {
 
                 wrapper.find('table th[data-sortable="price"]').trigger('click');
 
-                // Expect that the table is sorted by price and "€499.00" is shown first
-                expect(wrapper.find('tbody > tr:first-child > td:nth-last-child(2)').text()).toBe("€499.00");
-                expect(wrapper.find('tbody > tr:nth-child(2) > td:nth-last-child(2)').text()).toBe("€479.00");
-                expect(wrapper.find('tbody > tr:nth-child(3) > td:nth-last-child(2)').text()).toBe("€459.00");
+                // Expect that the table is sorted by price
+                expect(wrapper.find('tbody > tr:nth-child(1)').attributes('data-productid')).toBe("ABC1234541122");
+                expect(wrapper.find('tbody > tr:nth-child(2)').attributes('data-productid')).toBe("ABC1234541120");
+                expect(wrapper.find('tbody > tr:nth-child(3)').attributes('data-productid')).toBe("ABC1234567800");
             });
         });
 
