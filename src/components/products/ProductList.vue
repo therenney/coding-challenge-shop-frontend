@@ -73,6 +73,8 @@
 </template>
 
 <script>
+import currency from '@utils/filters/currency';
+
 export default {
     /**
      * Props definition
@@ -178,19 +180,7 @@ export default {
      * Should be made globally available but for this SPA i keep it in the component
      */
     filters: {
-        currency: function(value, digits) {
-            if (typeof value !== 'number') {
-                return value;
-            }
-
-            const formatter = new Intl.NumberFormat('de-DE', {
-                style: 'currency',
-                currency: 'EUR',
-                minimumFractionDigits: digits,
-            });
-
-            return formatter.format(value);
-        },
+        currency,
     },
 };
 </script>

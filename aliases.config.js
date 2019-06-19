@@ -15,6 +15,7 @@ const aliases = {
     '@src': 'src',
     '@store': 'src/store',
     '@views': 'src/views',
+    '@utils': 'src/utils',
 };
 
 module.exports = {

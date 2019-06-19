@@ -13,10 +13,11 @@ module.exports = {
         '^@router/(.*)$': '<rootDir>/src/router/$1',
         '^@src/(.*)$': '<rootDir>/src/$1',
         '^@store/(.*)$': '<rootDir>/src/store/$1',
+        '^@utils/(.*)$': '<rootDir>/src/utils/$1',
         '^@views/(.*)$': '<rootDir>/src/views/$1',
     },
     snapshotSerializers: ['jest-serializer-vue'],
-    testMatch: ['**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)'],
+    testMatch: ['**/tests/unit/**/*.(test|spec).(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)'],
     testURL: 'http://localhost/',
     watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname'],
 };
